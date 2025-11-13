@@ -19,6 +19,7 @@ void password_check(FILE *file) {
 
         if (strcmp(password, stored_password) == 0) {
             printf("Access granted!\n");
+            system("hub.exe");
             return;
         } else {
             chances--;
@@ -38,6 +39,7 @@ void load() {
     if (file == NULL) {
         printf("Error: password file not found. Entering maintenance mode...\n");
         exit(1);
+        fclose(file);
     }
     password_check(file);
     fclose(file);
