@@ -3,6 +3,10 @@
 #include <string.h>
 #include <windows.h>
 
+// Protótipos de funções
+void password_check(FILE *file);
+void load(void);
+
 int chances = 3;
 
 void password_check(FILE *file) {
