@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
-
-// Protótipos de funções
+// "Functions assinatures"
 void password_check(FILE *file);
 void load(void);
 
@@ -23,7 +22,7 @@ void password_check(FILE *file) {
 
         if (strcmp(password, stored_password) == 0) {
             printf("Access granted!\n");
-            system("hub.exe");
+            check_hub();
             return;
         } else {
             chances--;
@@ -42,8 +41,8 @@ void load() {
     FILE *file = fopen("password.txt", "r");
     if (file == NULL) {
         printf("Error: password file not found. Entering maintenance mode...\n");
-        exit(1);
         fclose(file);
+        exit(1);
     }
     password_check(file);
     fclose(file);
@@ -54,4 +53,13 @@ int main(void) {
     puts("Documentation: www.github.com/JustAcoder617/Zit-executable-os");
     puts("Preparing the system...");
     load();
+}
+void check_hub() {
+    FILE *file = fopen("hub.exe", "r");
+    if (file == NULL) {
+        printf("Error: hub.exe not found. Exiting...\n");
+        exit(1);
+    }
+    fclose(file);
+    system("hub.exe");
 }
