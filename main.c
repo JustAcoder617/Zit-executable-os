@@ -3,6 +3,7 @@
 #include <string.h>
 #include <windows.h>
 // "Functions assinatures"
+void check_hub(void);
 void password_check(FILE *file);
 void load(void);
 
@@ -41,8 +42,8 @@ void load() {
     FILE *file = fopen("password.txt", "r");
     if (file == NULL) {
         printf("Error: password file not found. Entering maintenance mode...\n");
-        fclose(file);
-        exit(1);
+        char error[]='404p';
+        maintence_mode(error);
     }
     password_check(file);
     fclose(file);
@@ -62,4 +63,30 @@ void check_hub() {
     }
     fclose(file);
     system("hub.exe");
+}
+void maintence_mode(char error[]) {
+    printf("Entering maintenance mode due to error: %s\n", error);
+    printf("Please contact support or refer to the documentation for assistance.\n");
+    if (strcmp(error, "404p") == 0) {
+        printf("Suggested action: Create a 'password.txt' file with your desired password.\n");
+        puts("Creatending a another password for you...");
+        FILE *file = fopen("password.txt", "w");
+        if (file == NULL) {
+            printf("Error creating password file. Exiting...\n");
+            Sleep(3000);
+            exit(1);
+        }else{
+            puts("Please type your new password: ");
+            char password[100];
+            fgets(password, sizeof(password), stdin);
+            fprintf(file, "%s", password);
+            printf("Password file created successfully. Please restart the application.\n");
+            Sleep(3000);
+            fclose(file);
+            exit(0);
+        }
+        fclose(file);
+
+    }
+    exit(1);
 }
