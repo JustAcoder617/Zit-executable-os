@@ -114,7 +114,10 @@ int main(int argc, char **argv) {
 				char ans[8];
 				if (!fgets(ans, sizeof(ans), stdin)) break;
 				if (ans[0] == 'y' || ans[0] == 'Y') {
-					if (save_file(path)) printf("Saved to '%s'.\n", path);
+					if (save_file(path)){
+						printf("Saved to '%s'.\n", path);
+						system("hub.exe");
+					}
 					else printf("Error saving '%s'. Exiting without saving.\n", path);
 				}
 			}

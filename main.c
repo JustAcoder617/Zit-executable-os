@@ -3,6 +3,7 @@
 #include <string.h>
 #include <windows.h>
 // "Functions assinatures"
+void maintence_mode(char error[]);
 void check_hub(void);
 void password_check(FILE *file);
 void load(void);
