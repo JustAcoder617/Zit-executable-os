@@ -3,17 +3,33 @@
 #include <string.h>
 #include <windows.h>
 
-void operaction_selection(int n1, int n2);
+void calc_execute(void);
+void notepad_execute(const char *path);
 
-void hub_start(void) {
-    printf("Logged sucefully.\n");
+void apps_menu(void) {
+    printf("Welcome to the apps menu!\n");
+    Sleep(2000);
+    printf("Wanna use: 1. notepad 2. calculator 3. cmd\n");
+    int choice;
+    scanf("%d", &choice);
+    switch(choice){
+        case 1:
+            notepad_execute(NULL);
+            break;
+        case 2:
+            calc_execute();
+            break;
+        case 3:
+            system("cmd.exe");
+            break;
+        default:
+            printf("Invalid choice.\n");
+            apps_menu();
+            break;
+    }
 }
 
-void calculator_launch(void) {
-    int n1, n2;
-    printf("Please type the first number: ");
-    scanf("%d", &n1);
-    printf("Now type the second number to do the operation with %d: ", n1);
-    scanf("%d", &n2);
-    operaction_selection(n1, n2);
+int main(void) {
+    apps_menu();
+    return 0;
 }

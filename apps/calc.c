@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void operaction_selection(int n1, int n2);
+void operation_selection(int n1, int n2);
 void do_opr(int opr, int n1, int n2);
 void add(int a, int b);
 void sub(int a, int b);
@@ -15,10 +15,10 @@ void calc_execute(void) {
     scanf("%d", &n1);
     printf("Now type the second number to do the operation with %d: ", n1);
     scanf("%d", &n2);
-    operaction_selection(n1, n2);
+    operation_selection(n1, n2);
 }
 
-void operaction_selection(int n1, int n2) {
+void operation_selection(int n1, int n2) {
     int choice;
 
     printf("Now select the operation that you want to do with %d and %d:\n", n1, n2);
@@ -53,31 +53,33 @@ void do_opr(int opr, int n1, int n2) {
             break;
         default:
             printf("Invalid option.\n");
+            operation_selection(n1, n2);
     }
 }
 
 void add(int a, int b) {
     printf("Result: %d\n", a + b);
-    system("Hub.exe");
+    calc_execute();
 }
 
 void sub(int a, int b) {
     printf("Result: %d\n", a - b);
-    system("hub.exe");
+    calc_execute();
 }
 
 void divi(int a, int b) {
     if (b != 0){
         printf("Result: %d\n", a / b);
-        system("hub.exe");
-    }else{
+        calc_execute();
+    } else {
         printf("Cannot divide by zero.\n");
-        apps_menu();
+        calc_execute();
     }
 }
 
 void mult(int a, int b) {
     printf("Result: %d\n", a * b);
+    calc_execute();
 }
 
 void pot(int a, int b) {
@@ -85,5 +87,5 @@ void pot(int a, int b) {
     for (int i = 0; i < b; i++)
         result *= a;
     printf("Result: %d\n", result);
-    system("Hub.exe");
+    calc_execute();
 }

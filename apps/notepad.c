@@ -52,6 +52,15 @@ void print_help(void) {
 	puts("Type normal lines to add them to the file.");
 }
 
+void print_contents(void) {
+	puts("\nCurrent file:");
+	for (size_t i = 0; i < line_count; ++i) {
+		printf("%4zu: %s", i + 1, lines[i]);
+		if (lines[i][strlen(lines[i]) - 1] != '\n') putchar('\n');
+	}
+	puts("");
+}
+
 void notepad_execute(const char *path) {
 	const char *filepath = NULL;
 	char input[1024];
@@ -74,9 +83,7 @@ void notepad_execute(const char *path) {
 	} else {
 		printf("File '%s' loaded with %zu lines.\n", filepath, line_count);
 		print_contents();
-	}
-
-	puts("Type .help for commands. Start typing lines:");
+	}	puts("Type .help for commands. Start typing lines:");
 
 	while (1) {
 		printf(">> ");
