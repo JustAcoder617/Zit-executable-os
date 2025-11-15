@@ -1,0 +1,12 @@
+CC = gcc
+CFLAGS = -Wall -g
+FONT= main.c hub.c notepad.c cmd.c calc.c
+OBJ = main.o hub.o cmd.o calc.o notepad.o
+TARGET = ziper
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	rm -f $(OBJ) $(TARGET)
