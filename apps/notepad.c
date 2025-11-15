@@ -52,34 +52,27 @@ void print_help(void) {
 	puts("Type normal lines to add them to the file.");
 }
 
-void print_contents(void) {
-	puts("Current file:");
-	for (size_t i = 0; i < line_count; ++i) {
-		printf("%4zu: %s", i + 1, lines[i]);
-		if (lines[i][strlen(lines[i]) - 1] != '\n') putchar('\n');
-	}
-}
-
-int main(int argc, char **argv) {
-	const char *path = NULL;
+void notepad_execute(const char *path) {
+	const char *filepath = NULL;
 	char input[1024];
 
-	if (argc >= 2) path = argv[1];
-	else {
+	if (path == NULL) {
 		printf("File name (will be created if missing): ");
-		if (!fgets(input, sizeof(input), stdin)) return 0;
+		if (!fgets(input, sizeof(input), stdin)) return;
 		input[strcspn(input, "\n")] = 0;
 		if (strlen(input) == 0) {
 			printf("No file provided. Exiting.\n");
-			return 0;
+			return;
 		}
-		path = strdup(input);
+		filepath = strdup(input);
+	} else {
+		filepath = path;
 	}
 
-	if (!load_file(path)) {
-		printf("File '%s' not found - creating new.\n", path);
+	if (!load_file(filepath)) {
+		printf("File '%s' not found - creating new.\n", filepath);
 	} else {
-		printf("File '%s' loaded with %zu lines.\n", path, line_count);
+		printf("File '%s' loaded with %zu lines.\n", filepath, line_count);
 		print_contents();
 	}
 
@@ -96,8 +89,8 @@ int main(int argc, char **argv) {
 		}
 
 		if (strcmp(input, ".save") == 0) {
-			if (save_file(path)) printf("Saved to '%s'.\n", path);
-			else printf("Error saving '%s'.\n", path);
+			if (save_file(filepath)) printf("Saved to '%s'.\n", filepath);
+			else printf("Error saving '%s'.\n", filepath);
 			continue;
 		}
 
@@ -114,11 +107,11 @@ int main(int argc, char **argv) {
 				char ans[8];
 				if (!fgets(ans, sizeof(ans), stdin)) break;
 				if (ans[0] == 'y' || ans[0] == 'Y') {
-					if (save_file(path)){
-						printf("Saved to '%s'.\n", path);
+					if (save_file(filepath)){
+						printf("Saved to '%s'.\n", filepath);
 						system("hub.exe");
 					}
-					else printf("Error saving '%s'. Exiting without saving.\n", path);
+					else printf("Error saving '%s'. Exiting without saving.\n", filepath);
 				}
 			}
 			break;
@@ -139,7 +132,8 @@ int main(int argc, char **argv) {
 	}
 
 	free_lines();
-	if (argc < 2) free((void*)path);
+	if (path == NULL) free((void*)filepath);
 	puts("Exiting notepad.");
-	return 0;
 }
+
+

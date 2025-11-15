@@ -9,18 +9,13 @@ void divi(int a, int b);
 void mult(int a, int b);
 void pot(int a, int b);
 
-int main(void) {
+void calc_execute(void) {
     int n1, n2;
-
     printf("Please type the first number: ");
     scanf("%d", &n1);
-
     printf("Now type the second number to do the operation with %d: ", n1);
     scanf("%d", &n2);
-
     operaction_selection(n1, n2);
-
-    return 0;
 }
 
 void operaction_selection(int n1, int n2) {
