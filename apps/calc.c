@@ -69,10 +69,10 @@ void sub(int a, int b) {
 void divi(int a, int b) {
     if (b != 0){
         printf("Result: %d\n", a / b);
-        system("Hub.exe");
+        system("hub.exe");
     }else{
         printf("Cannot divide by zero.\n");
-        main();
+        apps_menu();
     }
 }
 
