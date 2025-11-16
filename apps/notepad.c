@@ -141,6 +141,4 @@ void notepad_execute(const char *path) {
 	free_lines();
 	if (path == NULL) free((void*)filepath);
 	puts("Exiting notepad.");
-}
-
-
+	}

@@ -3,33 +3,30 @@
 #include <string.h>
 #include <windows.h>
 
-void calc_execute(void);
-void notepad_execute(const char *path);
-
 void apps_menu(void) {
     printf("Welcome to the apps menu!\n");
     Sleep(2000);
     printf("Wanna use: 1. notepad 2. calculator 3. cmd\n");
     int choice;
-    scanf("%d", &choice);
+    if (scanf("%d", &choice) != 1) {
+        // clear invalid input
+        int c;
+        while ((c = getchar()) != EOF && c != '\n');
+        apps_menu();
+    }
     switch(choice){
         case 1:
-            notepad_execute(NULL);
+            system("apps\\notepad.exe");
             break;
         case 2:
-            calc_execute();
+            system("apps\\calc.exe");
             break;
         case 3:
-            system("cmd.exe");
+            system("apps\\cmd.exe");
             break;
         default:
             printf("Invalid choice.\n");
             apps_menu();
             break;
     }
-}
-
-int main(void) {
-    apps_menu();
-    return 0;
 }

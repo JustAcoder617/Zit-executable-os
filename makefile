@@ -1,26 +1,25 @@
 CC = gcc
 CFLAGS = -Wall -g
-SRC = main.c hub.c apps/cmd.c apps/calc.c apps/notepad.c
-OBJ = main.o hub.o cmd.o calc.o notepad.o
-TARGET = ziper
 
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+TARGETS = ziper.exe hub.exe apps/notepad.exe apps/calc.exe apps/cmd.exe
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c -o main.o
+all: $(TARGETS)
 
-hub.o: hub.c
-	$(CC) $(CFLAGS) -c hub.c -o hub.o
+ziper.exe: main.c
+	$(CC) $(CFLAGS) -o $@ main.c
 
-cmd.o: apps/cmd.c
-	$(CC) $(CFLAGS) -c apps/cmd.c -o cmd.o
+hub.exe: hub_main.c hub.c
+	$(CC) $(CFLAGS) -o $@ hub_main.c hub.c
 
-calc.o: apps/calc.c
-	$(CC) $(CFLAGS) -c apps/calc.c -o calc.o
+apps/notepad.exe: apps/notepad_main.c apps/notepad.c
+	$(CC) $(CFLAGS) -o $@ apps/notepad_main.c apps/notepad.c
 
-notepad.o: apps/notepad.c
-	$(CC) $(CFLAGS) -c apps/notepad.c -o notepad.o
+apps/calc.exe: apps/calc_main.c apps/calc.c
+	$(CC) $(CFLAGS) -o $@ apps/calc_main.c apps/calc.c -lm
 
+apps/cmd.exe: apps/cmd_main.c
+	$(CC) $(CFLAGS) -o $@ apps/cmd_main.c
+
+.PHONY: all clean
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(TARGETS) *.o hub_main.o
