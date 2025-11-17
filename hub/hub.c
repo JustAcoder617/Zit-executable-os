@@ -6,7 +6,7 @@ void apps_menu( void );
 void apps_menu(void) {
     printf("Welcome to the apps menu!\n");
     Sleep(2000);
-    printf("Wanna use: 1. notepad 2. calculator 3. cmd\n");
+    printf("Wanna use: 1. notepad 2. calculator 3. cmd 4.tasks app\n");
     int choice;
     if (scanf("%d", &choice) != 1) {
         // clear invalid input
@@ -19,11 +19,13 @@ void apps_menu(void) {
             system("apps\\notepad.exe");
             break;
         case 2:
-            system("apps\\calc.exe");
+            system("apps\\cal\\calc.exe");
             break;
         case 3:
-            system("apps\\cmd.exe");
+            system("apps\\cmd\\cmd.exe");
             break;
+        case 4:
+            system("apps\\task\\taskapp.exe");
         default:
             printf("Invalid choice.\n");
             apps_menu();
