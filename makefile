@@ -8,14 +8,14 @@ all: $(TARGETS)
 ziper.exe: main.c
 	$(CC) $(CFLAGS) -o $@ main.c
 
-hub.exe: hub_main.c hub.c
-	$(CC) $(CFLAGS) -o $@ hub_main.c hub.c
+hub.exe: hub.c hub.o
+	$(CC) $(CFLAGS) -o $@ hub.c hub.o
 
-apps/notepad.exe: apps/notepad_main.c apps/notepad.c
-	$(CC) $(CFLAGS) -o $@ apps/notepad_main.c apps/notepad.c
+apps/notepad.exe: apps/notepad.c apps/notepad.o
+	$(CC) $(CFLAGS) -o $@ apps/notepad.o apps/notepad.c
 
-apps/calc.exe: apps/calc_main.c apps/calc.c
-	$(CC) $(CFLAGS) -o $@ apps/calc_main.c apps/calc.c -lm
+apps/calc.exe: apps/calc.c apps/calc.o
+	$(CC) $(CFLAGS) -o $@ apps/calc.o apps/calc.c -lm
 
 apps/cmd.exe: apps/cmd_main.c
 	$(CC) $(CFLAGS) -o $@ apps/cmd_main.c
