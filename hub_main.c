@@ -1,7 +1,5 @@
 #include <stdio.h>
-
-void apps_menu(void);
-
+#include "hub.c"
 int main(void) {
     apps_menu();
     return 0;

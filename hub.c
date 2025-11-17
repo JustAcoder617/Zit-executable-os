@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
-
+void apps_menu( void );
 void apps_menu(void) {
     printf("Welcome to the apps menu!\n");
     Sleep(2000);
