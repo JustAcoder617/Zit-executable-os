@@ -16,13 +16,13 @@ void apps_menu(void) {
     }
     switch(choice){
         case 1:
-            system("apps\\notepad.exe");
+            system("apps\\note\\notepad.exe");
             break;
         case 2:
-            system("apps\\calc.exe");
+            system("apps\\calc\\calc.exe");
             break;
         case 3:
-            system("apps\\cmd.exe");
+            system("apps\\cmd\\cmd.exe");
             break;
         default:
             printf("Invalid choice.\n");
