@@ -2,18 +2,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
+#include <time.h> 
+
+int chances = 3;
 
 void maintenance_mode(char error[]);
 void password_check(FILE *file);
 
-int chances = 3;
-
 void password_check(FILE *file) {
+    clock_t start_time, end_time;
+    double time_spent; 
+    
     char password[100];
     char stored_password[100];
 
     fgets(stored_password, sizeof(stored_password), file);
     stored_password[strcspn(stored_password, "\n")] = 0;
+
+    start_time = clock(); 
 
     while (chances > 0) {
         printf("Please type your password: ");
@@ -21,7 +27,11 @@ void password_check(FILE *file) {
         password[strcspn(password, "\n")] = 0;
 
         if (strcmp(password, stored_password) == 0) {
+            end_time = clock(); 
+            time_spent = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
+
             printf("Access granted!\n");
+            printf("Time taken to log in: %.2f seconds\n", time_spent);
             printf("Starting hub...\n");
             system("hub.exe");
             return;
@@ -79,4 +89,5 @@ int main(void) {
     puts("Documentation: www.github.com/JustAcoder617/Zit-executable-os");
     puts("Preparing the system...");
     load();
+    return 0;
 }
