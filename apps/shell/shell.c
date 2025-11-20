@@ -15,13 +15,13 @@ void cmd(void){
         if (!fgets(input, sizeof(input), stdin)) break;
         input[strcspn(input, "\n")] = 0;
         if (strcmp(input, "help")){
-            puts("  clear- clear the terminal\n");
-            puts("  help- Shoe this message\n");
-            puts("  include- Include an file on this Os\n");
-            puts("  exit- quit the terminal\n");
+            puts("  //clear- clear the terminal\n");
+            puts("  //help- Shoe this message\n");
+            puts("  //include- Include an file on this Os\n");
+            puts("  //exit- quit the terminal\n");
             puts("  More future commands will be added.");
         }
-        if (strcmp(input, "exit") == 0) {
+        if (strcmp(input, "//exit") == 0) {
             printf("Exiting command line.\n");
             break;
         }

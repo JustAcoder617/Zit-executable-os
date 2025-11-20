@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
 int main(void) {
-	system("cmd.exe");
+	system("shell.exe");
 	return 0;
 }
