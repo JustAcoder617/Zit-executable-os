@@ -1,2 +1,3 @@
 # Zit executable os
 A simple os made in c
+# ATENTION: THIS FILE IS #DEPRECATED#, SO THIS HAVE BUGS AND NOT WILL BE UPD SOON.
